@@ -52,6 +52,7 @@ dependencies {
     implementation("androidx.compose.ui:ui:${rootProject.extra["composeVersion"]}")
     implementation("androidx.compose.ui:ui-viewbinding:${rootProject.extra["composeVersion"]}")
     implementation("androidx.compose.ui:ui-tooling-preview:1.1.1")
+    implementation("androidx.compose.ui:ui-tooling:${rootProject.extra["composeVersion"]}")
     implementation("androidx.compose.runtime:runtime-livedata:${rootProject.extra["composeVersion"]}")
     implementation("androidx.compose.material:material:${rootProject.extra["composeVersion"]}")
     implementation("com.google.android.material:material:1.5.0")

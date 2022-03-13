@@ -1,22 +1,45 @@
 package com.example.alarmclocksong.ui.views
 
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
 import com.example.alarmclocksong.ui.theme.ACSTheme
 
 @Composable
 fun AlarmClockList(times: List<String>) {
     ACSTheme {
-        LazyColumn {
+        LazyColumn(modifier = Modifier.padding(4.dp, 4.dp)) {
             items(times) {
                 AlarmClock(it)
             }
+            item {
+                // TODO FACTOR THIS BOX WITH THE ON IN ALARMCLOCK
+                Box(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .background(MaterialTheme.colors.background, RoundedCornerShape(16.dp))
+                ) {
+                    Text(
+                        modifier = Modifier.fillMaxWidth(),
+                        text = "+",
+                        style = MaterialTheme.typography.h2,
+                        textAlign = TextAlign.Center,
+                        color = MaterialTheme.colors.primary
+                    )
+                }
+            }
         }
-
-        Text(text = "+")
     }
 }
 

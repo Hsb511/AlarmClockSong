@@ -8,10 +8,10 @@ import androidx.compose.runtime.Composable
 
 
 private val DarkColorPalette =
-    darkColors(primary = Cornsilk)
+    darkColors(primary = Cornsilk, background = DarkGrey)
 
 private val LightColorPalette =
-    lightColors()
+    lightColors(primary = OxfordBlue, background = Cornsilk)
 
 @Composable
 fun ACSTheme(
