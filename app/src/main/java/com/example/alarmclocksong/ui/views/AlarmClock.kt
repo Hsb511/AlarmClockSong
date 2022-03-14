@@ -6,34 +6,47 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Switch
+import androidx.compose.material.SwitchDefaults
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.example.alarmclocksong.ui.extensions.switchColors
 
 @Composable
 fun AlarmClock(time: String, enabled: Boolean) {
-    Row(modifier = Modifier
-        .padding(0.dp, 0.dp, 0.dp, 8.dp)
-        .fillMaxWidth()
-        .wrapContentSize(Alignment.Center)) {
-        CustomBox {
+    val mRemember = remember { mutableStateOf(enabled) }
+
+    Row(
+        modifier = Modifier
+            .padding(0.dp, 0.dp, 0.dp, 8.dp)
+            .fillMaxWidth()
+            .wrapContentSize(Alignment.Center)
+    ) {
+        CustomBox(enabled = mRemember.value) {
             Text(
                 modifier = Modifier.padding(16.dp, 16.dp),
                 text = time,
                 style = MaterialTheme.typography.h4,
-                color = MaterialTheme.colors.primary
+                color = mRemember.value.switchColors(
+                    MaterialTheme.colors.primary,
+                    MaterialTheme.colors.onPrimary
+                )
             )
 
             Switch(
                 modifier = Modifier
                     .align(Alignment.TopEnd)
                     .padding(0.dp, 12.dp, 16.dp, 0.dp),
-                checked = true,
-                enabled = enabled,
-                onCheckedChange = {}
+                checked = mRemember.value,
+                onCheckedChange = { mRemember.value = it },
+                colors = SwitchDefaults.colors(
+                    checkedThumbColor = MaterialTheme.colors.primary
+                )
             )
         }
     }

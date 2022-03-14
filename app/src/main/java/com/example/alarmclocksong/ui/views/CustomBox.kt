@@ -11,9 +11,11 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.example.alarmclocksong.ui.extensions.switchColors
 
 @Composable
 inline fun CustomBox(
+    enabled: Boolean = true,
     contentAlignment: Alignment = Alignment.TopStart,
     propagateMinConstraints: Boolean = false,
     content: @Composable BoxScope.() -> Unit
@@ -21,7 +23,11 @@ inline fun CustomBox(
     Box(
         modifier = Modifier
             .fillMaxWidth()
-            .background(MaterialTheme.colors.background, RoundedCornerShape(24.dp)),
+            .background(
+                color = enabled.switchColors(
+                    MaterialTheme.colors.background, MaterialTheme.colors.onBackground
+                ), shape = RoundedCornerShape(24.dp)
+            ),
         contentAlignment = contentAlignment,
         propagateMinConstraints = propagateMinConstraints,
         content = content

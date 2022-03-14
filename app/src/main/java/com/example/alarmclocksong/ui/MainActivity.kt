@@ -9,6 +9,6 @@ import com.example.alarmclocksong.ui.views.AlarmClockList
 class MainActivity:  ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContent { ACSTheme { AlarmClockList(listOf("00:00", "00:00", "00:00")) } }
+        setContent { ACSTheme { AlarmClockList() } }
     }
 }
