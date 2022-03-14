@@ -17,19 +17,15 @@ import androidx.compose.ui.unit.dp
 import com.example.alarmclocksong.ui.theme.ACSTheme
 
 @Composable
+
 fun AlarmClockList(times: List<String>) {
     ACSTheme {
-        LazyColumn(modifier = Modifier.padding(4.dp, 4.dp)) {
+        LazyColumn(modifier = Modifier.padding(4.dp, 8.dp, 4.dp, 4.dp)) {
             items(times) {
-                AlarmClock(it)
+                AlarmClock(it, false)
             }
             item {
-                // TODO FACTOR THIS BOX WITH THE ON IN ALARMCLOCK
-                Box(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .background(MaterialTheme.colors.background, RoundedCornerShape(16.dp))
-                ) {
+                CustomBox {
                     Text(
                         modifier = Modifier.fillMaxWidth(),
                         text = "+",
@@ -49,7 +45,7 @@ fun AlarmClockListPreview() {
     ACSTheme {
         LazyColumn {
             items(listOf("23:23", "00:23", "23:00", "00:00")) {
-                AlarmClock(it)
+                AlarmClock(it, false)
             }
         }
 
