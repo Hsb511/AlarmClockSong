@@ -21,32 +21,30 @@ import com.example.alarmclocksong.ui.extensions.switchColors
 fun AlarmClock(time: String, enabled: Boolean) {
     val mRemember = remember { mutableStateOf(enabled) }
 
-    Row(
-        modifier = Modifier
+    Row(modifier = Modifier
             .padding(0.dp, 0.dp, 0.dp, 8.dp)
             .fillMaxWidth()
             .wrapContentSize(Alignment.Center)
     ) {
         CustomBox(enabled = mRemember.value) {
             Text(
-                modifier = Modifier.padding(16.dp, 16.dp),
                 text = time,
                 style = MaterialTheme.typography.h4,
                 color = mRemember.value.switchColors(
                     MaterialTheme.colors.primary,
                     MaterialTheme.colors.onPrimary
-                )
+                ),
+                modifier = Modifier.padding(16.dp, 16.dp)
             )
 
             Switch(
-                modifier = Modifier
-                    .align(Alignment.TopEnd)
-                    .padding(0.dp, 12.dp, 16.dp, 0.dp),
                 checked = mRemember.value,
                 onCheckedChange = { mRemember.value = it },
                 colors = SwitchDefaults.colors(
-                    checkedThumbColor = MaterialTheme.colors.primary
-                )
+                    checkedThumbColor = MaterialTheme.colors.primary),
+                modifier = Modifier
+                    .align(Alignment.TopEnd)
+                    .padding(0.dp, 12.dp, 16.dp, 0.dp)
             )
         }
     }

@@ -15,13 +15,14 @@ import com.example.alarmclocksong.ui.extensions.switchColors
 
 @Composable
 inline fun CustomBox(
+    modifier: Modifier = Modifier,
     enabled: Boolean = true,
     contentAlignment: Alignment = Alignment.TopStart,
     propagateMinConstraints: Boolean = false,
     content: @Composable BoxScope.() -> Unit
 ) {
     Box(
-        modifier = Modifier
+        modifier = modifier
             .fillMaxWidth()
             .background(
                 color = enabled.switchColors(
