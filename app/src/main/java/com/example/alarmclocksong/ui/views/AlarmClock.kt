@@ -18,7 +18,7 @@ import androidx.compose.ui.unit.dp
 import com.example.alarmclocksong.ui.extensions.switchColors
 
 @Composable
-fun AlarmClock(time: String, enabled: Boolean) {
+fun AlarmClock(time: String, enabled: Boolean, modifier: Modifier = Modifier) {
     val mRemember = remember { mutableStateOf(enabled) }
 
     Row(modifier = Modifier
@@ -26,7 +26,7 @@ fun AlarmClock(time: String, enabled: Boolean) {
             .fillMaxWidth()
             .wrapContentSize(Alignment.Center)
     ) {
-        CustomBox(enabled = mRemember.value) {
+        CustomBox(enabled = mRemember.value, modifier = modifier) {
             Text(
                 text = time,
                 style = MaterialTheme.typography.h4,

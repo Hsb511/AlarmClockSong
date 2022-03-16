@@ -22,11 +22,19 @@ class AlarmClockListVM : ViewModel() {
         }
     }
 
-    fun addNewAlarmClock() {
+    fun addAlarmClock() {
         Log.d(
             "AlarmClockListVM",
             "Displaying a new alarm clock, ${alarmClocks.size} alarm clock(s) displayed"
         )
         alarmClocks.add(AlarmClockVO())
+    }
+
+    fun removeAlarmClock(alarmClockVO: AlarmClockVO) {
+        Log.d(
+            "AlarmClockListVM",
+            "Removing an alarm clock, ${alarmClocks.size} alarm clock(s) displayed"
+        )
+        alarmClocks.remove(alarmClockVO)
     }
 }
