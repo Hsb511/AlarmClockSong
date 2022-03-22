@@ -14,7 +14,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.sp
 
 @Composable
-inline fun TimeTextField(time: MutableState<Int>, crossinline onValueChange: (time : Int?) -> Unit) {
+inline fun TimeTextField(time: MutableState<Int?>, crossinline onValueChange: (time : Int?) -> Unit) {
     OutlinedTextField(
         value = time.value.toString(),
         onValueChange = { onValueChange(it.toIntOrNull()) },
@@ -26,7 +26,7 @@ inline fun TimeTextField(time: MutableState<Int>, crossinline onValueChange: (ti
 @Preview(showSystemUi = true)
 @Composable
 fun TimeTextFieldPreview() {
-    val time = remember { mutableStateOf(23) }
+    val time: MutableState<Int?> = remember { mutableStateOf(23) }
     Row {
         TimeTextField( time ) {}
     }

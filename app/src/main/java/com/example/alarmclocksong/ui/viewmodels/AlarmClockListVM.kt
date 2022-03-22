@@ -29,4 +29,10 @@ class AlarmClockListVM : ViewModel() {
         alarmClocks.remove(alarmClockVO)
     }
 
+    fun updateAlarmClockTime(alarmClockVO: AlarmClockVO, time: String) {
+
+    }
+
+
+
 }

@@ -15,10 +15,29 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.alarmclocksong.R
+import com.example.alarmclocksong.ui.extensions.getHoursFromTime
+import com.example.alarmclocksong.ui.extensions.getMinutesFromTime
+import com.example.alarmclocksong.ui.viewmodels.AlarmClockListVM
+import com.example.alarmclocksong.ui.viewobjects.AlarmClockVO
 
 @Composable
-fun TimePicker(oldHours: Int, onHoursChanged: (hours: Int?) -> Unit,
-               oldMinutes: Int, onMinutesChanged: (minutes: Int?) -> Unit) {
+fun TimePicker(
+    alarmClockVO: AlarmClockVO,
+    alarmClockListVm: AlarmClockListVM = AlarmClockListVM()
+) =
+    TimePicker(
+        oldHours = alarmClockVO.time.getHoursFromTime(),
+        onHoursChanged = {},
+        oldMinutes = alarmClockVO.time.getMinutesFromTime(),
+        onMinutesChanged = {},
+        onTimeSaved = { time: String -> alarmClockListVm.updateAlarmClockTime(alarmClockVO, time) })
+
+@Composable
+private fun TimePicker(
+    oldHours: Int?, onHoursChanged: (hours: Int?) -> Unit,
+    oldMinutes: Int?, onMinutesChanged: (minutes: Int?) -> Unit,
+    onTimeSaved: (time: String) -> Unit
+) {
     val hours = remember { mutableStateOf(oldHours) }
     val minutes = remember { mutableStateOf(oldMinutes) }
 
@@ -35,7 +54,7 @@ fun TimePicker(oldHours: Int, onHoursChanged: (hours: Int?) -> Unit,
             }
         }
 
-        Button(onClick = { /*TODO*/ }) {
+        Button(onClick = { onTimeSaved("$hours:$minutes") }) {
             Text(text = stringResource(id = R.string.save_time))
         }
     }
@@ -44,5 +63,5 @@ fun TimePicker(oldHours: Int, onHoursChanged: (hours: Int?) -> Unit,
 @Preview(showSystemUi = true)
 @Composable
 fun CustomTimePickerPreview() {
-    TimePicker(23, {}, 23, {})
+    TimePicker(23, {}, 23, {}, {})
 }
