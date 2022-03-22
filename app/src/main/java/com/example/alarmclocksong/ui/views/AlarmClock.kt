@@ -26,7 +26,7 @@ fun AlarmClock(time: String, enabled: Boolean, modifier: Modifier = Modifier) {
             .fillMaxWidth()
             .wrapContentSize(Alignment.Center)
     ) {
-        CustomBox(enabled = mRemember.value, modifier = modifier) {
+        AlarmClockBox(enabled = mRemember.value, modifier = modifier) {
             Text(
                 text = time,
                 style = MaterialTheme.typography.h4,

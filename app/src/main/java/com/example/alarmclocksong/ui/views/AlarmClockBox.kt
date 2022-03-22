@@ -14,7 +14,7 @@ import androidx.compose.ui.unit.dp
 import com.example.alarmclocksong.ui.extensions.switchColors
 
 @Composable
-inline fun CustomBox(
+inline fun AlarmClockBox(
     modifier: Modifier = Modifier,
     enabled: Boolean = true,
     contentAlignment: Alignment = Alignment.TopStart,
@@ -38,7 +38,7 @@ inline fun CustomBox(
 @Preview
 @Composable
 fun CustomBoxPreview() {
-    CustomBox {
+    AlarmClockBox {
         AlarmClock(time = "00:00", enabled = false)
     }
 }

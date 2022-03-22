@@ -48,7 +48,7 @@ private fun AlarmClockList(
                 )
             }
             item {
-                CustomBox(Modifier.clickable { addAlarmClock() }) {
+                AlarmClockBox(Modifier.clickable { addAlarmClock() }) {
                     Text(
                         text = "+",
                         style = MaterialTheme.typography.h2,
