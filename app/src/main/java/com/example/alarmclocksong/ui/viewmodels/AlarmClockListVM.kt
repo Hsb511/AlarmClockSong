@@ -1,10 +1,9 @@
 package com.example.alarmclocksong.ui.viewmodels
 
-import android.util.Log
 import androidx.compose.runtime.mutableStateListOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.alarmclocksong.domain.model.AlarmClockVO
+import com.example.alarmclocksong.ui.viewobjects.AlarmClockVO
 import kotlinx.coroutines.launch
 
 class AlarmClockListVM : ViewModel() {
@@ -23,18 +22,11 @@ class AlarmClockListVM : ViewModel() {
     }
 
     fun addAlarmClock() {
-        Log.d(
-            "AlarmClockListVM",
-            "Displaying a new alarm clock, ${alarmClocks.size} alarm clock(s) displayed"
-        )
         alarmClocks.add(AlarmClockVO())
     }
 
     fun removeAlarmClock(alarmClockVO: AlarmClockVO) {
-        Log.d(
-            "AlarmClockListVM",
-            "Removing an alarm clock, ${alarmClocks.size} alarm clock(s) displayed"
-        )
         alarmClocks.remove(alarmClockVO)
     }
+
 }

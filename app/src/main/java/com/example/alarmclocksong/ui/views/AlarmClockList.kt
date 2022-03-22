@@ -14,27 +14,41 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.example.alarmclocksong.domain.model.AlarmClockVO
 import com.example.alarmclocksong.ui.theme.ACSTheme
 import com.example.alarmclocksong.ui.viewmodels.AlarmClockListVM
+import com.example.alarmclocksong.ui.viewobjects.AlarmClockVO
 
 @ExperimentalFoundationApi
 @Composable
-fun AlarmClockList(alarmClockListVm: AlarmClockListVM = AlarmClockListVM()) {
+fun AlarmClockList(alarmClockListVm: AlarmClockListVM = AlarmClockListVM()) =
+    AlarmClockList(
+        alarmClockListVm.alarmClocks,
+        { alarmClock -> alarmClockListVm.removeAlarmClock(alarmClock) },
+        { alarmClockListVm.addAlarmClock() }
+    )
+
+
+@ExperimentalFoundationApi
+@Composable
+private fun AlarmClockList(
+    alarmClocks: List<AlarmClockVO>,
+    onRemoveAlarmClock: (alarmClock: AlarmClockVO) -> Unit,
+    addAlarmClock: () -> Unit
+) {
     ACSTheme {
         LazyColumn(modifier = Modifier.padding(4.dp, 8.dp, 4.dp, 4.dp)) {
-            items(alarmClockListVm.alarmClocks) {
+            items(alarmClocks) {
                 AlarmClock(
                     time = it.time, enabled = it.state,
                     modifier = Modifier.combinedClickable(
                         onClick = {
                             //TODO OPENING A NEW FRAGMENT TO CHANGE THE TIME
                         },
-                        onLongClick = { alarmClockListVm.removeAlarmClock(it) })
+                        onLongClick = { onRemoveAlarmClock(it) })
                 )
             }
             item {
-                CustomBox(Modifier.clickable { alarmClockListVm.addAlarmClock() }) {
+                CustomBox(Modifier.clickable { addAlarmClock() }) {
                     Text(
                         text = "+",
                         style = MaterialTheme.typography.h2,
@@ -49,33 +63,16 @@ fun AlarmClockList(alarmClockListVm: AlarmClockListVM = AlarmClockListVM()) {
 }
 
 @Preview(showSystemUi = true)
+@ExperimentalFoundationApi
 @Composable
 fun AlarmClockListPreview() {
-    ACSTheme {
-        LazyColumn {
-            items(
-                listOf(
-                    AlarmClockVO("00:00", true),
-                    AlarmClockVO("00:23", false),
-                    AlarmClockVO("23:00", true),
-                    AlarmClockVO("23:23", false)
-                )
-            ) {
-                AlarmClock(time = it.time, enabled = it.state)
-            }
-
-            item {
-                CustomBox {
-                    Text(
-                        text = "+",
-                        style = MaterialTheme.typography.h2,
-                        textAlign = TextAlign.Center,
-                        color = MaterialTheme.colors.primary,
-                        modifier = Modifier.fillMaxWidth()
-                    )
-                }
-            }
-        }
-    }
+    AlarmClockList(
+        listOf(
+            AlarmClockVO("00:00", true),
+            AlarmClockVO("00:23", false),
+            AlarmClockVO("23:00", true),
+            AlarmClockVO("23:23", false)
+        ), {}, {})
 }
+
 
