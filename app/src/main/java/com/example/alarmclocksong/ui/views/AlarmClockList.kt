@@ -69,10 +69,10 @@ private fun AlarmClockList(
 fun AlarmClockListPreview() {
     AlarmClockList(
         listOf(
-            AlarmClockVO("00:00", true),
-            AlarmClockVO("00:23", false),
-            AlarmClockVO("23:00", true),
-            AlarmClockVO("23:23", false)
+            AlarmClockVO(1,"00:00", true),
+            AlarmClockVO(2, "00:23", false),
+            AlarmClockVO(3, "23:00", true),
+            AlarmClockVO(4, "23:23", false)
         ), {}, {}, {})
 }
 

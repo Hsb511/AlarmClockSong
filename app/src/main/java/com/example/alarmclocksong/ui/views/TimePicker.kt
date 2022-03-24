@@ -24,7 +24,7 @@ import com.example.alarmclocksong.ui.viewobjects.AlarmClockVO
 @Composable
 fun TimePicker(
     navController: NavHostController,
-    alarmClockVO: AlarmClockVO = AlarmClockVO(),
+    alarmClockVO: AlarmClockVO = AlarmClockVO(1),
     alarmClockListVm: AlarmClockListVM = AlarmClockListVM()
 ) =
     TimePicker(
