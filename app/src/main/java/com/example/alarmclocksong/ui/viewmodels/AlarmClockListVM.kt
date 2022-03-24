@@ -1,5 +1,6 @@
 package com.example.alarmclocksong.ui.viewmodels
 
+import android.util.Log
 import androidx.compose.runtime.mutableStateListOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -30,8 +31,8 @@ class AlarmClockListVM : ViewModel() {
         alarmClocks.remove(alarmClockVO)
     }
 
-    fun updateAlarmClockTime(alarmClockVO: AlarmClockVO, time: String) {
-
+    fun updateAlarmClockTime(id: Int, time: String) {
+        Log.d("updateAlarmClockTime","New time : $time set for alarm clock with id: $id")
     }
 
 }

@@ -16,25 +16,22 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import com.example.alarmclocksong.R
-import com.example.alarmclocksong.ui.extensions.getHoursFromTime
-import com.example.alarmclocksong.ui.extensions.getMinutesFromTime
 import com.example.alarmclocksong.ui.viewmodels.AlarmClockListVM
-import com.example.alarmclocksong.ui.viewobjects.AlarmClockVO
 
 @Composable
 fun TimePicker(
     navController: NavHostController,
-    alarmClockVO: AlarmClockVO = AlarmClockVO(1),
+    id: Int, oldHours: Int?, oldMinutes: Int?,
     alarmClockListVm: AlarmClockListVM = AlarmClockListVM()
 ) =
     TimePicker(
-        oldHours = alarmClockVO.time.getHoursFromTime(),
+        oldHours = oldHours,
         onHoursChanged = {},
-        oldMinutes = alarmClockVO.time.getMinutesFromTime(),
+        oldMinutes = oldMinutes,
         onMinutesChanged = {},
         onTimeSaved = { time: String ->
             run {
-                alarmClockListVm.updateAlarmClockTime(alarmClockVO, time)
+                alarmClockListVm.updateAlarmClockTime(id, time)
                 navController.navigate("alarmClockList")
             }
         })
@@ -61,7 +58,7 @@ private fun TimePicker(
             }
         }
 
-        Button(onClick = { onTimeSaved("$hours:$minutes") }) {
+        Button(onClick = { onTimeSaved("${hours.value}:${minutes.value}") }) {
             Text(text = stringResource(id = R.string.save_time))
         }
     }

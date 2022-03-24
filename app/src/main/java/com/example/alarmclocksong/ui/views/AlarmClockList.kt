@@ -15,6 +15,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
+import com.example.alarmclocksong.ui.extensions.getHoursFromTime
 import com.example.alarmclocksong.ui.viewmodels.AlarmClockListVM
 import com.example.alarmclocksong.ui.viewobjects.AlarmClockVO
 
@@ -26,7 +27,10 @@ fun AlarmClockList(
 ) =
     AlarmClockList(
         alarmClocks = alarmClockListVm.alarmClocks,
-        onPickTime = { navController.navigate("timePicker") },
+        onPickTime = { alarmClock -> navController.navigate(
+            "timePicker/${alarmClock.id}" +
+                    "?hours=${alarmClock.time.getHoursFromTime()}" +
+                    "?minutes=${alarmClock.time.getHoursFromTime()}") },
         onRemoveAlarmClock = { alarmClock -> alarmClockListVm.removeAlarmClock(alarmClock) },
         addAlarmClock = { alarmClockListVm.addAlarmClock() }
     )
@@ -36,7 +40,7 @@ fun AlarmClockList(
 @Composable
 private fun AlarmClockList(
     alarmClocks: List<AlarmClockVO>,
-    onPickTime: () -> Unit,
+    onPickTime: (alarmClock: AlarmClockVO) -> Unit,
     onRemoveAlarmClock: (alarmClock: AlarmClockVO) -> Unit,
     addAlarmClock: () -> Unit
 ) {
@@ -45,7 +49,7 @@ private fun AlarmClockList(
             AlarmClock(
                 time = it.time, enabled = it.state,
                 modifier = Modifier.combinedClickable(
-                    onClick = { onPickTime() },
+                    onClick = { onPickTime(it) },
                     onLongClick = { onRemoveAlarmClock(it) })
             )
         }
@@ -69,7 +73,7 @@ private fun AlarmClockList(
 fun AlarmClockListPreview() {
     AlarmClockList(
         listOf(
-            AlarmClockVO(1,"00:00", true),
+            AlarmClockVO(1, "00:00", true),
             AlarmClockVO(2, "00:23", false),
             AlarmClockVO(3, "23:00", true),
             AlarmClockVO(4, "23:23", false)
