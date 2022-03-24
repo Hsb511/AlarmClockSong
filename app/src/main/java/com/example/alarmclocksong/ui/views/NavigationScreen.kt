@@ -1,6 +1,5 @@
 package com.example.alarmclocksong.ui.views
 
-import android.util.Log
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.runtime.Composable
 import androidx.navigation.compose.NavHost

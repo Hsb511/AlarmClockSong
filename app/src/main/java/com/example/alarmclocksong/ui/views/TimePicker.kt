@@ -4,6 +4,8 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.Button
+import androidx.compose.material.ButtonDefaults
+import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
@@ -58,8 +60,14 @@ private fun TimePicker(
             }
         }
 
-        Button(onClick = { onTimeSaved("${hours.value}:${minutes.value}") }) {
-            Text(text = stringResource(id = R.string.save_time))
+        Button(
+            onClick = { onTimeSaved("${hours.value}:${minutes.value}") },
+            colors = ButtonDefaults.buttonColors(backgroundColor = MaterialTheme.colors.secondary)
+        ) {
+            Text(
+                text = stringResource(id = R.string.save_time),
+                style = MaterialTheme.typography.h4,
+            )
         }
     }
 }

@@ -24,15 +24,22 @@ class AlarmClockListVM : ViewModel() {
     }
 
     fun addAlarmClock() {
-        alarmClocks.add(AlarmClockVO(alarmClocks.getNextFreeId()))
+        val id = alarmClocks.getNextFreeId()
+        Log.d("AlarmClockListVM","Creating a new alarmClock with id: $id")
+        alarmClocks.add(AlarmClockVO(id))
     }
 
     fun removeAlarmClock(alarmClockVO: AlarmClockVO) {
+        Log.d("AlarmClockListVM","Removing the alarm clock with id: ${alarmClockVO.id}")
         alarmClocks.remove(alarmClockVO)
     }
 
     fun updateAlarmClockTime(id: Int, time: String) {
-        Log.d("updateAlarmClockTime","New time : $time set for alarm clock with id: $id")
+        Log.d("AlarmClockListVM","New time : $time set for alarm clock with id: $id")
+        alarmClocks.find { it.id == id }?.let { it.time = time }
     }
 
+    fun updateAlarmClockState(id: Int, state: Boolean) {
+
+    }
 }
