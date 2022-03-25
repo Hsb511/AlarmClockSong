@@ -1,4 +1,4 @@
-package com.example.alarmclocksong.ui.views
+package com.example.alarmclocksong.ui.components
 
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -26,7 +26,7 @@ fun AlarmClock(time: String, enabled: Boolean, modifier: Modifier = Modifier) {
             .fillMaxWidth()
             .wrapContentSize(Alignment.Center)
     ) {
-        AlarmClockBox(enabled = mRemember.value, modifier = modifier) {
+        AlarmClockBox(modifier = modifier) {
             Text(
                 text = time,
                 style = MaterialTheme.typography.h4,

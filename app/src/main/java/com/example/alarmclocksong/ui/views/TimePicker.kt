@@ -1,11 +1,9 @@
 package com.example.alarmclocksong.ui.views
 
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.*
+import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -17,6 +15,8 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import com.example.alarmclocksong.R
+import com.example.alarmclocksong.ui.components.ActionButton
+import com.example.alarmclocksong.ui.components.TimeTextField
 import com.example.alarmclocksong.ui.viewmodels.AlarmClockListVM
 
 @Composable
@@ -59,16 +59,10 @@ private fun TimePicker(
             }
         }
 
-        Button(
-            onClick = { onTimeSaved("${hours.value}:${minutes.value}") },
-            colors = ButtonDefaults.buttonColors(backgroundColor = MaterialTheme.colors.secondary),
-            shape = RoundedCornerShape(32.dp)
-        ) {
-            Text(
-                text = stringResource(id = R.string.save_time),
-                modifier = Modifier.padding(32.dp, 8.dp)
-            )
-        }
+        ActionButton(
+            text = stringResource(id = R.string.save_button),
+            onClick = { onTimeSaved("${hours.value}:${minutes.value}") }
+        )
     }
 }
 

@@ -1,4 +1,4 @@
-package com.example.alarmclocksong.ui.views
+package com.example.alarmclocksong.ui.components
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
@@ -11,12 +11,10 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.example.alarmclocksong.ui.extensions.switchColors
 
 @Composable
 inline fun AlarmClockBox(
     modifier: Modifier = Modifier,
-    enabled: Boolean = true,
     contentAlignment: Alignment = Alignment.TopStart,
     propagateMinConstraints: Boolean = false,
     content: @Composable BoxScope.() -> Unit

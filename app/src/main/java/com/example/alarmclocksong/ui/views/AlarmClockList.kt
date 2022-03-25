@@ -7,9 +7,6 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
-import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.Button
-import androidx.compose.material.ButtonDefaults
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
@@ -21,6 +18,8 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import com.example.alarmclocksong.R
+import com.example.alarmclocksong.ui.components.ActionButton
+import com.example.alarmclocksong.ui.components.AlarmClock
 import com.example.alarmclocksong.ui.extensions.getHoursFromTime
 import com.example.alarmclocksong.ui.extensions.getMinutesFromTime
 import com.example.alarmclocksong.ui.viewmodels.AlarmClockListVM
@@ -79,16 +78,10 @@ private fun AlarmClockList(
         }
         item {
             Row(modifier = Modifier.padding(8.dp)) {
-                Button(
-                    onClick = { addAlarmClock() },
-                    colors = ButtonDefaults.buttonColors(backgroundColor = MaterialTheme.colors.secondary),
-                    shape = RoundedCornerShape(32.dp)
-                ) {
-                    Text(
-                        text = stringResource(id = R.string.alarm_clock_add),
-                        modifier = Modifier.padding(32.dp, 8.dp)
-                    )
-                }
+                ActionButton(
+                    text = stringResource(id = R.string.add_button),
+                    onClick = { addAlarmClock() }
+                )
             }
         }
     }
