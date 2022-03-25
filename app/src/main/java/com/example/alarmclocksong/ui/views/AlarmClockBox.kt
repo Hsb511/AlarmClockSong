@@ -25,9 +25,8 @@ inline fun AlarmClockBox(
         modifier = modifier
             .fillMaxWidth()
             .background(
-                color = enabled.switchColors(
-                    MaterialTheme.colors.background, MaterialTheme.colors.onBackground
-                ), shape = RoundedCornerShape(24.dp)
+                color = MaterialTheme.colors.background,
+                shape = RoundedCornerShape(24.dp)
             ),
         contentAlignment = contentAlignment,
         propagateMinConstraints = propagateMinConstraints,

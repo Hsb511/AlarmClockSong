@@ -32,7 +32,7 @@ fun AlarmClock(time: String, enabled: Boolean, modifier: Modifier = Modifier) {
                 style = MaterialTheme.typography.h4,
                 color = mRemember.value.switchColors(
                     MaterialTheme.colors.primary,
-                    MaterialTheme.colors.onPrimary
+                    MaterialTheme.colors.primaryVariant
                 ),
                 modifier = Modifier.padding(16.dp, 16.dp)
             )
