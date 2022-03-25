@@ -6,6 +6,7 @@ import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.sp
 import com.example.alarmclocksong.R
 
@@ -47,8 +48,9 @@ private val appFontFamily = FontFamily(
 val Typography = Typography(
     h3 = TextStyle(
         fontFamily = appFontFamily,
-        fontWeight = FontWeight.Normal,
-        fontSize = 34.sp
+        fontWeight = FontWeight.Light,
+        fontSize = 34.sp,
+        textAlign = TextAlign.Center
     ),
     h4 = TextStyle(
         fontFamily = appFontFamily,
@@ -64,5 +66,5 @@ val Typography = Typography(
         fontFamily = appFontFamily,
         fontWeight = FontWeight.Light,
         fontSize = 24.sp
-    )
+    ),
 )

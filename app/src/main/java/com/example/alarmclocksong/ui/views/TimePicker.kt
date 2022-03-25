@@ -10,6 +10,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -27,9 +28,9 @@ fun TimePicker(
 ) =
     TimePicker(
         oldHours = oldHours,
-        onHoursChanged = {},
+        onHoursChanged = { hours -> alarmClockListVm.onHoursChanged(hours) },
         oldMinutes = oldMinutes,
-        onMinutesChanged = {},
+        onMinutesChanged = { minutes -> alarmClockListVm.onMinutesChanged(minutes) },
         onTimeSaved = { time: String ->
             run {
                 alarmClockListVm.updateAlarmClockTime(id, time)
@@ -39,12 +40,12 @@ fun TimePicker(
 
 @Composable
 private fun TimePicker(
-    oldHours: Int?, onHoursChanged: (hours: Int?) -> Unit,
-    oldMinutes: Int?, onMinutesChanged: (minutes: Int?) -> Unit,
+    oldHours: Int?, onHoursChanged: (hours: TextFieldValue) -> String,
+    oldMinutes: Int?, onMinutesChanged: (minutes: TextFieldValue) -> String,
     onTimeSaved: (time: String) -> Unit
 ) {
-    val hours = remember { mutableStateOf(oldHours) }
-    val minutes = remember { mutableStateOf(oldMinutes) }
+    val hours = remember { mutableStateOf(TextFieldValue(oldHours.toString())) }
+    val minutes = remember { mutableStateOf(TextFieldValue(oldMinutes.toString())) }
 
     Column(horizontalAlignment = Alignment.CenterHorizontally) {
         Row(verticalAlignment = Alignment.CenterVertically, modifier = Modifier.padding(16.dp)) {
@@ -61,7 +62,7 @@ private fun TimePicker(
 
         ActionButton(
             text = stringResource(id = R.string.save_button),
-            onClick = { onTimeSaved("${hours.value}:${minutes.value}") }
+            onClick = { onTimeSaved("${hours.value.text}:${minutes.value.text}") }
         )
     }
 }
@@ -69,5 +70,5 @@ private fun TimePicker(
 @Preview(showSystemUi = true)
 @Composable
 fun CustomTimePickerPreview() {
-    TimePicker(23, {}, 23, {}, {})
+    TimePicker(23, { "" }, 23, { "" }, {})
 }

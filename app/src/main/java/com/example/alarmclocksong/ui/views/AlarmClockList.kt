@@ -55,7 +55,7 @@ private fun AlarmClockList(
 ) {
     LazyColumn(
         horizontalAlignment = Alignment.CenterHorizontally,
-        modifier = Modifier.padding(4.dp, 8.dp, 4.dp, 4.dp)
+        modifier = Modifier.padding(8.dp)
     ) {
         item {
             Text(
