@@ -1,4 +1,4 @@
-package com.example.alarmclocksong.ui.views
+package com.example.alarmclocksong.ui.components
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
@@ -11,12 +11,10 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.example.alarmclocksong.ui.extensions.switchColors
 
 @Composable
-inline fun CustomBox(
+inline fun AlarmClockBox(
     modifier: Modifier = Modifier,
-    enabled: Boolean = true,
     contentAlignment: Alignment = Alignment.TopStart,
     propagateMinConstraints: Boolean = false,
     content: @Composable BoxScope.() -> Unit
@@ -25,9 +23,8 @@ inline fun CustomBox(
         modifier = modifier
             .fillMaxWidth()
             .background(
-                color = enabled.switchColors(
-                    MaterialTheme.colors.background, MaterialTheme.colors.onBackground
-                ), shape = RoundedCornerShape(24.dp)
+                color = MaterialTheme.colors.background,
+                shape = RoundedCornerShape(24.dp)
             ),
         contentAlignment = contentAlignment,
         propagateMinConstraints = propagateMinConstraints,
@@ -38,7 +35,7 @@ inline fun CustomBox(
 @Preview
 @Composable
 fun CustomBoxPreview() {
-    CustomBox {
+    AlarmClockBox {
         AlarmClock(time = "00:00", enabled = false)
     }
 }

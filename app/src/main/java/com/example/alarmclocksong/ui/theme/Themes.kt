@@ -5,13 +5,27 @@ import androidx.compose.material.MaterialTheme
 import androidx.compose.material.darkColors
 import androidx.compose.material.lightColors
 import androidx.compose.runtime.Composable
-
+import androidx.compose.ui.graphics.Color.Companion.White
 
 private val DarkColorPalette =
-    darkColors(primary = Cornsilk, background = DarkGrey, onBackground = DarkerGrey)
+    darkColors(
+        primary = Cornsilk,
+        primaryVariant = DarkerGrey,
+        secondary = Olivine,
+        background = DarkGrey,
+        onBackground = DarkerGrey,
+        surface = DarkerGrey
+    )
 
 private val LightColorPalette =
-    lightColors(primary = OxfordBlue, background = Cornsilk, onBackground = LightGrey)
+    lightColors(
+        primary = Umber,
+        primaryVariant = LightGrey,
+        secondary = Olivine,
+        background = White,
+        onBackground = LightGrey,
+        surface = UltraLightGrey
+    )
 
 @Composable
 fun ACSTheme(
