@@ -7,10 +7,11 @@ import androidx.compose.material.lightColors
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color.Companion.White
 
-
 private val DarkColorPalette =
     darkColors(
         primary = Cornsilk,
+        primaryVariant = DarkerGrey,
+        secondary = Olivine,
         background = DarkGrey,
         onBackground = DarkerGrey,
         surface = DarkerGrey

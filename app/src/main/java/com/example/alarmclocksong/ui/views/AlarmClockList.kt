@@ -62,6 +62,7 @@ private fun AlarmClockList(
                 text = stringResource(id = R.string.alarm_clock_title),
                 style = MaterialTheme.typography.h4,
                 textAlign = TextAlign.Center,
+                color = MaterialTheme.colors.onSurface,
                 modifier = Modifier
                     .padding(32.dp)
                     .fillMaxWidth()

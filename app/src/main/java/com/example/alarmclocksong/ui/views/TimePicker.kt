@@ -3,6 +3,7 @@ package com.example.alarmclocksong.ui.views
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
@@ -53,7 +54,12 @@ private fun TimePicker(
                 TimeTextField(hours, onHoursChanged)
             }
             Column {
-                Text(text = ":", fontSize = 24.sp, modifier = Modifier.padding(8.dp))
+                Text(
+                    text = ":",
+                    fontSize = 24.sp,
+                    color = MaterialTheme.colors.onSurface,
+                    modifier = Modifier.padding(8.dp)
+                )
             }
             Column(modifier = Modifier.weight(1f)) {
                 TimeTextField(minutes, onMinutesChanged)
