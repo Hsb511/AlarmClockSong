@@ -11,17 +11,19 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
+import com.example.alarmclocksong.ui.viewmodels.AlarmClockListVM
 
 @ExperimentalFoundationApi
 @Composable
-fun NavigationScreen() {
+fun MainScreen() {
     val navController = rememberNavController()
+    val alarmClockListVM = AlarmClockListVM()
     
     Box(modifier = Modifier
         .fillMaxSize()
         .background(MaterialTheme.colors.surface)) {
         NavHost(navController, startDestination = "alarmClockList") {
-            composable(route = "alarmClockList") { AlarmClockList(navController) }
+            composable(route = "alarmClockList") { AlarmClockList(navController, alarmClockListVM) }
             composable(
                 route = "timePicker/{id}?hours={hours}?minutes={minutes}",
                 arguments = listOf(
@@ -33,7 +35,8 @@ fun NavigationScreen() {
                     navController,
                     backStackEntry.arguments?.getString("id")!!.toInt(),
                     backStackEntry.arguments?.getString("hours")?.toIntOrNull(),
-                    backStackEntry.arguments?.getString("minutes")?.toIntOrNull()
+                    backStackEntry.arguments?.getString("minutes")?.toIntOrNull(),
+                    alarmClockListVM
                 )
             }
         }
