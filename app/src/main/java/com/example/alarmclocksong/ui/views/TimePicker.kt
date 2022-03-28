@@ -32,9 +32,9 @@ fun TimePicker(
         onHoursChanged = { hours -> alarmClockListVm.onHoursChanged(hours) },
         oldMinutes = oldMinutes,
         onMinutesChanged = { minutes -> alarmClockListVm.onMinutesChanged(minutes) },
-        onTimeSaved = { time: String ->
+        onTimeSaved = { hours: Int?, minutes: Int? ->
             run {
-                alarmClockListVm.updateAlarmClockTime(id, time)
+                alarmClockListVm.updateAlarmClockTime(id, hours, minutes)
                 navController.navigate("alarmClockList")
             }
         })
@@ -43,7 +43,7 @@ fun TimePicker(
 private fun TimePicker(
     oldHours: Int?, onHoursChanged: (hours: TextFieldValue) -> String,
     oldMinutes: Int?, onMinutesChanged: (minutes: TextFieldValue) -> String,
-    onTimeSaved: (time: String) -> Unit
+    onTimeSaved: (hours: Int?, minutes: Int?) -> Unit
 ) {
     val hours = remember { mutableStateOf(TextFieldValue(oldHours.toString())) }
     val minutes = remember { mutableStateOf(TextFieldValue(oldMinutes.toString())) }
@@ -68,7 +68,7 @@ private fun TimePicker(
 
         ActionButton(
             text = stringResource(id = R.string.save_button),
-            onClick = { onTimeSaved("${hours.value.text}:${minutes.value.text}") }
+            onClick = { onTimeSaved(hours.value.text.toIntOrNull(), minutes.value.text.toIntOrNull()) }
         )
     }
 }
@@ -76,5 +76,5 @@ private fun TimePicker(
 @Preview(showSystemUi = true)
 @Composable
 fun CustomTimePickerPreview() {
-    TimePicker(23, { "" }, 23, { "" }, {})
+    TimePicker(23, { "" }, 23, { "" }, { _, _ -> })
 }

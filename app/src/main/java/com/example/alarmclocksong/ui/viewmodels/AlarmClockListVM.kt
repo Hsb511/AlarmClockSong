@@ -8,6 +8,7 @@ import androidx.lifecycle.viewModelScope
 import com.example.alarmclocksong.domain.usecases.FilterHoursUseCase
 import com.example.alarmclocksong.domain.usecases.FilterMinutesUseCase
 import com.example.alarmclocksong.ui.extensions.getNextFreeId
+import com.example.alarmclocksong.ui.extensions.toReadableTime
 import com.example.alarmclocksong.ui.viewobjects.AlarmClockVO
 import kotlinx.coroutines.launch
 
@@ -37,7 +38,8 @@ class AlarmClockListVM : ViewModel() {
         alarmClocks.remove(alarmClockVO)
     }
 
-    fun updateAlarmClockTime(id: Int, time: String) {
+    fun updateAlarmClockTime(id: Int, hours: Int?, minutes: Int?) {
+        val time = "${hours.toReadableTime()}:${minutes.toReadableTime()}"
         Log.d("AlarmClockListVM", "New time : $time set for alarm clock with id: $id")
         alarmClocks.find { it.id == id }?.let { it.time = time }
     }

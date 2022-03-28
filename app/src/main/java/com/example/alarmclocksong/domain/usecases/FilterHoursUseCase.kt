@@ -6,16 +6,10 @@ class FilterHoursUseCase {
     companion object {
         fun execute(hours: TextFieldValue) = hours.text.toIntOrNull()?.let {
             when {
-                it < 0 -> {
-                    "0"
-                }
-                it >= 23 -> {
-                    "23"
-                }
-                else -> {
-                    it.toString()
-                }
+                it < 0 -> ""
+                it >= 23 -> "23"
+                else -> it.toString()
             }
-        } ?: "0"
+        } ?: ""
     }
 }
