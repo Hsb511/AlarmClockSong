@@ -41,7 +41,8 @@ fun AlarmClockList(
             )
         },
         onRemoveAlarmClock = { alarmClock -> alarmClockListVm.removeAlarmClock(alarmClock) },
-        addAlarmClock = { alarmClockListVm.addAlarmClock() }
+        addAlarmClock = { alarmClockListVm.addAlarmClock() },
+        onStateChanged = { id, state -> alarmClockListVm.updateAlarmClockState(id, state) }
     )
 
 
@@ -51,7 +52,8 @@ private fun AlarmClockList(
     alarmClocks: List<AlarmClockVO>,
     onPickTime: (alarmClock: AlarmClockVO) -> Unit,
     onRemoveAlarmClock: (alarmClock: AlarmClockVO) -> Unit,
-    addAlarmClock: () -> Unit
+    addAlarmClock: () -> Unit,
+    onStateChanged: (id: Int, state: Boolean) -> Unit
 ) {
     LazyColumn(
         horizontalAlignment = Alignment.CenterHorizontally,
@@ -71,7 +73,8 @@ private fun AlarmClockList(
 
         items(alarmClocks) {
             AlarmClock(
-                time = it.time, enabled = it.state,
+                time = it.time, enabled = it.isActive, id = it.id,
+                onStateChanged = onStateChanged,
                 modifier = Modifier.combinedClickable(
                     onClick = { onPickTime(it) },
                     onLongClick = { onRemoveAlarmClock(it) })
@@ -93,12 +96,16 @@ private fun AlarmClockList(
 @Composable
 fun AlarmClockListPreview() {
     AlarmClockList(
-        listOf(
+        alarmClocks = listOf(
             AlarmClockVO(1, "00:00", true),
             AlarmClockVO(2, "00:23", false),
             AlarmClockVO(3, "23:00", true),
             AlarmClockVO(4, "23:23", false)
-        ), {}, {}, {})
+        ),
+        onPickTime = {},
+        onRemoveAlarmClock = {},
+        addAlarmClock = {},
+        onStateChanged = { _, _ -> })
 }
 
 

@@ -18,7 +18,9 @@ import androidx.compose.ui.unit.dp
 import com.example.alarmclocksong.ui.extensions.switchColors
 
 @Composable
-fun AlarmClock(time: String, enabled: Boolean, modifier: Modifier = Modifier) {
+fun AlarmClock(time: String, enabled: Boolean, id: Int,
+               onStateChanged: (id: Int, state: Boolean) -> Unit,
+               modifier: Modifier = Modifier) {
     val mRemember = remember { mutableStateOf(enabled) }
 
     Row(modifier = Modifier
@@ -39,7 +41,10 @@ fun AlarmClock(time: String, enabled: Boolean, modifier: Modifier = Modifier) {
 
             Switch(
                 checked = mRemember.value,
-                onCheckedChange = { mRemember.value = it },
+                onCheckedChange = {
+                    mRemember.value = it
+                    onStateChanged(id, it)
+                },
                 colors = SwitchDefaults.colors(
                     checkedThumbColor = MaterialTheme.colors.primary),
                 modifier = Modifier
@@ -53,5 +58,5 @@ fun AlarmClock(time: String, enabled: Boolean, modifier: Modifier = Modifier) {
 @Preview(showSystemUi = true)
 @Composable
 fun AlarmClockPreview() {
-    AlarmClock("00:00", false)
+    AlarmClock(time = "00:00", enabled = false, id = 2, onStateChanged = { _, _ -> })
 }

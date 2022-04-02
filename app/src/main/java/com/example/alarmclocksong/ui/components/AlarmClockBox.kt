@@ -36,6 +36,6 @@ inline fun AlarmClockBox(
 @Composable
 fun CustomBoxPreview() {
     AlarmClockBox {
-        AlarmClock(time = "00:00", enabled = false)
+        AlarmClock(time = "00:00", enabled = false, id = 1, onStateChanged = { _, _ -> } )
     }
 }

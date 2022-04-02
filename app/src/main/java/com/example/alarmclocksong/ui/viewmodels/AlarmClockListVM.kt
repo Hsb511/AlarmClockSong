@@ -20,7 +20,7 @@ class AlarmClockListVM : ViewModel() {
             alarmClocks.addAll(
                 mutableListOf(
                     AlarmClockVO(id = 1),
-                    AlarmClockVO(id = 2, state = false),
+                    AlarmClockVO(id = 2, isActive = false),
                     AlarmClockVO(id = 3, time = "23:23")
                 )
             )
@@ -49,6 +49,6 @@ class AlarmClockListVM : ViewModel() {
     fun onMinutesChanged(minutes: TextFieldValue) = FilterMinutesUseCase.execute(minutes = minutes)
 
     fun updateAlarmClockState(id: Int, state: Boolean) {
-
+        alarmClocks.find { it.id == id }?.let { it.isActive = state }
     }
 }
